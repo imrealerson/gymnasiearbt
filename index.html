@@ -2,42 +2,43 @@
 <html lang="sv">
 <head>
   <meta charset="UTF-8">
-  <title>Study Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Hub – Översikt</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- Header & Navigation -->
   <header>
-    <h1>Study Hub</h1>
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">SH</div>
+        <h1>Study Hub</h1>
+      </a>
 
-    <div>
-      <strong>Elev:</strong>
-    </div>
+      <div class="student-info">
+        <strong>Elev:</strong>
+        <input type="text" id="studentNameInput" placeholder="Skriv ditt namn..." aria-label="Elevens namn">
+      </div>
 
-    <div>
-      <strong>Snabbstatistik:</strong>
-      <ul>
-        <li>Nästa lektion: </li>
-        <li>Inlämning idag: 2 uppgifter</li>
+      <ul class="status-pills">
+        <li id="nextLessonStatus">Nästa lektion: Matematik 3c (10:15)</li>
+        <li class="due-badge" id="dueTodayStatus">Inlämning idag: 2 uppgifter</li>
       </ul>
     </div>
 
     <nav aria-label="Huvudnavigation">
-      <ul>
-        <li><a href="#overview">Översikt</a></li>
-        <li><a href="#schedule">Schema & Ringklocktider</a></li>
-        <li><a href="#classroom">Google Classroom</a></li>
-        <li><a href="#grades">Betyg & Betygskatalog</a></li>
-        <li><a href="#school-info">Skolinformation & Matsedel</a></li>
+      <ul class="tab-list">
+        <li><a href="index.html" class="tab-btn active">Översikt</a></li>
+        <li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
+        <li><a href="schema.html" class="tab-btn">Schema</a></li>
+        <li><a href="betyg.html" class="tab-btn">Betyg</a></li>
+        <li><a href="skolinfo.html" class="tab-btn">Skolinformation & Matsedel</a></li>
       </ul>
     </nav>
   </header>
 
-  <hr>
-
-  <!-- Quick Links Bar -->
-  <section aria-label="Google Workspace & Skolans snabblänkar">
-    <h2>Snabblänkar</h2>
+  <section class="quick-links" aria-label="Google Workspace & Skolans snabblänkar">
+    <h2>Länkar:</h2>
     <ul>
       <li><a href="https://classroom.google.com" target="_blank" rel="noopener noreferrer">Google Classroom</a></li>
       <li><a href="https://drive.google.com" target="_blank" rel="noopener noreferrer">Google Drive</a></li>
@@ -48,66 +49,39 @@
     </ul>
   </section>
 
-  <hr>
-
   <main>
+    <div class="section-header">
+      <h2 id="overviewHeading">Dagens översikt</h2>
+    </div>
 
-    <!-- 1. Dashboard Overview -->
-    <section id="overview">
-      <h2>1. Dagens översikt (Måndag den 16 november 2026)</h2>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Dagens meddelanden</h3>
+        <ul class="clean-list">
+          <li><strong>Temavecka:</strong> Imorgon är det pyjamas- och mysig tröja-dag.</li>
+          <li><strong>Bibliotekets öppettider:</strong> Mediecentret stänger kl. 16:00 idag på grund av ett läraremöte.</li>
+        </ul>
+      </div>
 
-      <h3>Dagens meddelanden</h3>
-      <ul>
-        <li><strong>Temavecka:</strong> Imorgon är det pyjamas- och mysig tröja-dag.</li>
-        <li><strong>Bibliotekets öppettider:</strong> Mediecentret stänger kl. 16:00 idag på grund av ett läraremöte.</li>
-      </ul>
+      <div class="card">
+        <h3>Dagens matsedel</h3>
+        <ul class="clean-list">
+          <li><strong>Varmrätt:</strong> Örtstekt kyckling med potatismos och gräddsås</li>
+          <li><strong>Vegetariskt alternativ:</strong> Rostad grönsaks- och kikärtscurry med basmatiris</li>
+          <li><strong>Tillbehör & Efterrätt:</strong> Ångkokt broccoli, fullkornsbulle, färska äppelskivor</li>
+        </ul>
+      </div>
 
-      <h3>Matsedel</h3>
-      <ul>
-        <li><strong>Varmrätt:</strong> Örtstekt kyckling med potatismos och gräddsås</li>
-        <li><strong>Vegetariskt alternativ:</strong> Rostad grönsaks- och kikärtscurry med basmatiris</li>
-        <li><strong>Tillbehör & Efterrätt:</strong> Ångkokt broccoli, fullkornsbulle, färska äppelskivor</li>
-      </ul>
-    </section>
-
-    <hr>
-
-    <!-- 2. Schedule & Bell Times -->
-    <section id="schedule">
-      <h2>2. Veckoschema & Ringklocktider</h2>
-
-      <h3>Ordinarie schema</h3>
-      <table border="1">
-        <thead>
-          <tr>
-            <th>Lektion</th>
-            <th>Tid</th>
-            <th>Måndag</th>
-            <th>Tisdag</th>
-            <th>Onsdag</th>
-            <th>Torsdag</th>
-            <th>Fredag</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <hr>
-
-    <!-- 3. Google Classroom Feed -->
-    <section id="classroom">
-      <h2>3. Google Classroom-uppgifter & Kurser</h2>
-
-      <h3>Registrerade kurser</h3>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-    <hr>
+      <div class="card" style="grid-column: 1 / -1;">
+        <h3>
+          <span>Kommande i Google Classroom</span>
+          <a href="classroom.html" class="btn btn-outline">Visa alla uppgifter →</a>
+        </h3>
+        <div id="overviewAssignments" class="grid-3"></div>
+      </div>
+    </div>
   </main>
+
+  <script src="app.js"></script>
 </body>
 </html>

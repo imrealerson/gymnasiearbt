@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Hub – Google Classroom</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">SH</div>
+        <h1>Study Hub</h1>
+      </a>
+
+      <div class="student-info">
+        <strong>Elev:</strong>
+        <input type="text" id="studentNameInput" placeholder="Skriv ditt namn..." aria-label="Elevens namn">
+      </div>
+
+      <ul class="status-pills">
+        <li id="nextLessonStatus">Nästa lektion: Matematik 3c (10:15)</li>
+        <li class="due-badge" id="dueTodayStatus">Inlämning idag: 2 uppgifter</li>
+      </ul>
+    </div>
+
+    <nav aria-label="Huvudnavigation">
+      <ul class="tab-list">
+        <li><a href="index.html" class="tab-btn">Översikt</a></li>
+        <li><a href="classroom.html" class="tab-btn active">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
+        <li><a href="schema.html" class="tab-btn">Schema</a></li>
+        <li><a href="betyg.html" class="tab-btn">Betyg</a></li>
+        <li><a href="skolinfo.html" class="tab-btn">Skolinformation & Matsedel</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="quick-links" aria-label="Google Workspace & Skolans snabblänkar">
+    <h2>Länkar:</h2>
+    <ul>
+      <li><a href="https://classroom.google.com" target="_blank" rel="noopener noreferrer">Google Classroom</a></li>
+      <li><a href="https://drive.google.com" target="_blank" rel="noopener noreferrer">Google Drive</a></li>
+      <li><a href="https://docs.google.com" target="_blank" rel="noopener noreferrer">Google Docs</a></li>
+      <li><a href="https://slides.google.com" target="_blank" rel="noopener noreferrer">Google Slides</a></li>
+      <li><a href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Kalender</a></li>
+      <li><a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">Gmail</a></li>
+    </ul>
+  </section>
+
+  <main>
+    <div class="section-header">
+      <h2>Google Classroom-uppgifter & Kurser</h2>
+      <div class="toolbar-actions">
+        <button class="btn btn-outline" id="toggleAddTaskBtn">+ Lägg till uppgift</button>
+        <button class="btn btn-primary" id="toggleApiConfigBtn">Koppla Google-konto</button>
+      </div>
+    </div>
+
+    <!-- Riktig Google Classroom OAuth-koppling -->
+    <div class="api-box" id="apiConfigBox">
+        <p>
+          <strong>Anslut till Google Classroom via Apps Script:</strong> Klistra in din webbapp-URL (som slutar på <code>/exec</code>) för att synka dina kurser och uppgifter.
+        </p>
+        <div class="api-form">
+          <input type="text" id="appsScriptUrlInput" placeholder="https://script.google.com/macros/s/.../exec">
+          <button class="btn btn-primary" id="connectGoogleBtn">Spara &amp; synka</button>
+          <button class="btn btn-outline" id="resetDemoBtn">Återställ demoläge</button>
+        </div>
+        <p id="apiStatusMessage" style="margin-top: 0.6rem; margin-bottom: 0; font-weight: 600;"></p>
+    </div>
+
+    <!-- Lägg till egen uppgift -->
+    <div class="add-task-panel" id="addTaskPanel">
+      <strong>Lägg till ny uppgift</strong>
+      <form id="addTaskForm" class="add-task-grid">
+        <input type="text" id="newTaskTitle" placeholder="Uppgiftens titel..." required>
+        <select id="newTaskCourse" required></select>
+        <input type="date" id="newTaskDue" required>
+        <input type="text" id="newTaskDesc" placeholder="Kort beskrivning (valfritt)">
+        <button type="submit" class="btn btn-primary">Spara uppgift</button>
+      </form>
+    </div>
+
+    <!-- Underflikar & kursfilter -->
+    <div class="classroom-toolbar">
+      <div class="sub-tabs" role="tablist">
+        <button class="sub-tab-btn active" data-filter="todo">Att göra</button>
+        <button class="sub-tab-btn" data-filter="all">Alla uppgifter</button>
+        <button class="sub-tab-btn" data-filter="done">Inlämnade</button>
+        <button class="sub-tab-btn" data-filter="courses">Registrerade kurser</button>
+      </div>
+
+      <div class="toolbar-actions" id="courseFilterWrapper">
+        <label for="courseFilterSelect" style="font-size: 0.88rem; font-weight: 600;">Kurs:</label>
+        <select id="courseFilterSelect">
+          <option value="all">Alla kurser</option>
+        </select>
+      </div>
+    </div>
+
+    <div id="classroomAssignmentsContainer" class="grid-3"></div>
+    <div id="classroomCoursesContainer" class="grid-3" style="display: none;"></div>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
