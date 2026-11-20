@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Hub – Adminvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">SH</div>
+        <h1>Study Hub</h1>
+      </a>
+
+      <ul class="status-pills">
+        <li id="nextLessonStatus">Nästa lektion: Matematik 3c (10:15)</li>
+        <li class="due-badge" id="dueTodayStatus">Inlämning idag: 0 uppgifter</li>
+      </ul>
+
+      <div class="auth-bar" id="authHeaderStatus"></div>
+    </div>
+
+    <nav aria-label="Huvudnavigation">
+      <ul class="tab-list">
+        <li><a href="index.html" class="tab-btn">Översikt</a></li>
+        <li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
+        <li><a href="schema.html" class="tab-btn">Schema</a></li>
+        <li><a href="betyg.html" class="tab-btn">Betyg</a></li>
+        <li><a href="skolinfo.html" class="tab-btn">Skolinfo &amp; Matsedel</a></li>
+        <li><a href="larare.html" class="tab-btn">Lärarvy</a></li>
+        <li><a href="admin.html" class="tab-btn active">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Inloggningskrav för admin -->
+    <section id="adminAuthGate" style="display:none;">
+      <div class="login-container">
+        <div class="card">
+          <div class="alert alert-info">
+            <strong>Administratörsinloggning krävs:</strong> Endast konton med rollen <code>admin</code> har åtkomst till den här sidan.
+          </div>
+          <div id="inlineAdminError" class="alert alert-error" style="display:none;">
+            Ogiltig admininloggning. Testa <code>admin</code> / <code>admin123</code>.
+          </div>
+          <form id="inlineAdminLoginForm" class="form-stack">
+            <div class="form-group">
+              <label for="inlineAdminUser">Användarnamn</label>
+              <input type="text" id="inlineAdminUser" value="admin" required>
+            </div>
+            <div class="form-group">
+              <label for="inlineAdminPass">Lösenord</label>
+              <input type="password" id="inlineAdminPass" value="admin123" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Logga in som Admin</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Admin Dashboard -->
+    <section id="adminDashboard" style="display:none;">
+      <div class="section-header">
+        <h2>Adminvy – Användare, Skoldata &amp; JSON-databas</h2>
+      </div>
+
+      <div id="adminStats" class="stat-grid"></div>
+
+      <div class="grid-2" style="margin-bottom:1.25rem;">
+        <!-- Skapa användare -->
+        <div class="card">
+          <h3>Skapa nytt användarkonto</h3>
+          <form id="adminUserForm" class="form-stack">
+            <div class="form-group">
+              <label for="newUserName">Fullständigt namn</label>
+              <input type="text" id="newUserName" placeholder="t.ex. Sara Svensson" required>
+            </div>
+            <div class="form-group">
+              <label for="newUserUsername">Användarnamn</label>
+              <input type="text" id="newUserUsername" placeholder="t.ex. sara.elev" required>
+            </div>
+            <div class="form-group">
+              <label for="newUserPassword">Lösenord</label>
+              <input type="text" id="newUserPassword" placeholder="Lösenord" required>
+            </div>
+            <div class="form-group">
+              <label for="newUserRole">Roll</label>
+              <select id="newUserRole">
+                <option value="student">Elev</option>
+                <option value="teacher">Lärare</option>
+                <option value="admin">Admin</option>
+              </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Lägg till användare</button>
+          </form>
+        </div>
+
+        <!-- Redigera veckans matsedel -->
+        <div class="card">
+          <h3>Redigera veckans matsedel</h3>
+          <form id="adminLunchForm" class="form-stack">
+            <div class="form-group">
+              <label for="lunch_Måndag">Måndag</label>
+              <input type="text" id="lunch_Måndag" required>
+            </div>
+            <div class="form-group">
+              <label for="lunch_Tisdag">Tisdag</label>
+              <input type="text" id="lunch_Tisdag" required>
+            </div>
+            <div class="form-group">
+              <label for="lunch_Onsdag">Onsdag</label>
+              <input type="text" id="lunch_Onsdag" required>
+            </div>
+            <div class="form-group">
+              <label for="lunch_Torsdag">Torsdag</label>
+              <input type="text" id="lunch_Torsdag" required>
+            </div>
+            <div class="form-group">
+              <label for="lunch_Fredag">Fredag</label>
+              <input type="text" id="lunch_Fredag" required>
+            </div>
+            <button type="submit" class="btn btn-success">Spara matsedel</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Användarlista -->
+      <div class="card" style="margin-bottom:1.25rem;">
+        <h3>Registrerade användare &amp; testinloggningar</h3>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Namn</th>
+                <th>Användarnamn</th>
+                <th>Lösenord</th>
+                <th>Roll</th>
+                <th>Åtgärd</th>
+              </tr>
+            </thead>
+            <tbody id="adminUsersTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- JSON-databashanterare -->
+      <div class="card">
+        <h3>
+          <span>JSON-databas (<code>database.json</code>)</span>
+          <div class="toolbar-actions">
+            <button type="button" class="btn btn-primary btn-sm" id="downloadDbBtn">Ladda ner database.json</button>
+            <label class="btn btn-outline btn-sm" style="cursor:pointer;">
+              Importera JSON
+              <input type="file" id="importDbInput" accept=".json" style="display:none;">
+            </label>
+            <button type="button" class="btn btn-danger btn-sm" id="resetFullDbBtn">Återställ databas</button>
+          </div>
+        </h3>
+        <pre id="jsonDatabasePreview" class="json-viewer"></pre>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

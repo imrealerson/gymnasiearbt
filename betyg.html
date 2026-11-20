@@ -1,111 +1,19 @@
-<!DOCTYPE html>
-<html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Hub – Betyg & Betygskatalog</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-
-  <header>
-    <div class="header-top">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">SH</div>
-        <h1>Study Hub</h1>
-      </a>
-
-      <div class="student-info">
-        <strong>Elev:</strong>
-        <input type="text" id="studentNameInput" placeholder="Skriv ditt namn..." aria-label="Elevens namn">
-      </div>
-
-      <ul class="status-pills">
-        <li id="nextLessonStatus">Nästa lektion: Matematik 3c (10:15)</li>
-        <li class="due-badge" id="dueTodayStatus">Inlämning idag: 2 uppgifter</li>
-      </ul>
-    </div>
-
-    <nav aria-label="Huvudnavigation">
-      <ul class="tab-list">
-        <li><a href="index.html" class="tab-btn">Översikt</a></li>
-        <li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
-        <li><a href="schema.html" class="tab-btn">Schema</a></li>
-        <li><a href="betyg.html" class="tab-btn active">Betyg</a></li>
-        <li><a href="skolinfo.html" class="tab-btn">Skolinformation & Matsedel</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <section class="quick-links" aria-label="Google Workspace & Skolans snabblänkar">
-    <h2>Länkar:</h2>
-    <ul>
-      <li><a href="https://classroom.google.com" target="_blank" rel="noopener noreferrer">Google Classroom</a></li>
-      <li><a href="https://drive.google.com" target="_blank" rel="noopener noreferrer">Google Drive</a></li>
-      <li><a href="https://docs.google.com" target="_blank" rel="noopener noreferrer">Google Docs</a></li>
-      <li><a href="https://slides.google.com" target="_blank" rel="noopener noreferrer">Google Slides</a></li>
-      <li><a href="https://calendar.google.com" target="_blank" rel="noopener noreferrer">Google Kalender</a></li>
-      <li><a href="https://mail.google.com" target="_blank" rel="noopener noreferrer">Gmail</a></li>
-    </ul>
-  </section>
-
-  <main>
-    <div class="section-header">
-      <h2>Betyg & Betygskatalog</h2>
-    </div>
-
-    <div class="table-wrapper">
-      <table>
-        <thead>
-          <tr>
-            <th>Kurs</th>
-            <th>Poäng</th>
-            <th>Aktuell prognos / Betyg</th>
-            <th>Lärare</th>
-            <th>Kommentar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Matematik 3c</strong></td>
-            <td>100 p</td>
-            <td><span class="grade-pill">B</span></td>
-            <td>Anna Lindqvist</td>
-            <td>Starkt resultat på derivata-provet.</td>
-          </tr>
-          <tr>
-            <td><strong>Programmering 1</strong></td>
-            <td>100 p</td>
-            <td><span class="grade-pill">A</span></td>
-            <td>Johan Bergström</td>
-            <td>Välstrukturerad kod i webbutvecklingsprojektet.</td>
-          </tr>
-          <tr>
-            <td><strong>Svenska 2</strong></td>
-            <td>100 p</td>
-            <td><span class="grade-pill">C</span></td>
-            <td>Maria Ek</td>
-            <td>Bra analys i litteraturseminariet.</td>
-          </tr>
-          <tr>
-            <td><strong>Engelska 6</strong></td>
-            <td>100 p</td>
-            <td><span class="grade-pill">B</span></td>
-            <td>David Miller</td>
-            <td>God muntlig framställning.</td>
-          </tr>
-          <tr>
-            <td><strong>Historia 1b</strong></td>
-            <td>100 p</td>
-            <td><span class="grade-pill">C</span></td>
-            <td>Karin Holm</td>
-            <td>Källkritikuppgiften godkänd med beröm.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<main>
+  <div class="section-header">
+    <h2>Betyg &amp; Betygskatalog</h2>
+  </div>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Kurs</th>
+          <th>Poäng</th>
+          <th>Aktuell prognos / Betyg</th>
+          <th>Lärare</th>
+          <th>Kommentar</th>
+        </tr>
+      </thead>
+      <tbody id="gradesTableBody"></tbody>
+    </table>
+  </div>
+</main>

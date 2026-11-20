@@ -1,0 +1,228 @@
+{
+    "version": 2,
+    "users": [
+      {
+        "id": "u1",
+        "username": "alex.elev",
+        "password": "elev123",
+        "name": "Alex Andersson",
+        "role": "student",
+        "class": "NA24A"
+      },
+      {
+        "id": "u5",
+        "username": "sara.elev",
+        "password": "elev123",
+        "name": "Sara Svensson",
+        "role": "student",
+        "class": "NA24A"
+      },
+      {
+        "id": "u6",
+        "username": "liam.elev",
+        "password": "elev123",
+        "name": "Liam Lindberg",
+        "role": "student",
+        "class": "TE24B"
+      },
+      {
+        "id": "u2",
+        "username": "anna.larare",
+        "password": "larare123",
+        "name": "Anna Lindqvist",
+        "role": "teacher",
+        "subject": "Matematik 3c"
+      },
+      {
+        "id": "u3",
+        "username": "johan.larare",
+        "password": "larare123",
+        "name": "Johan Bergström",
+        "role": "teacher",
+        "subject": "Programmering 1"
+      },
+      {
+        "id": "u4",
+        "username": "admin",
+        "password": "admin123",
+        "name": "Systemadministratör",
+        "role": "admin"
+      }
+    ],
+    "courses": [
+      {
+        "id": "c1",
+        "name": "Matematik 3c",
+        "section": "NA24A",
+        "teacher": "Anna Lindqvist",
+        "color": "#1a73e8",
+        "link": "https://classroom.google.com"
+      },
+      {
+        "id": "c2",
+        "name": "Programmering 1",
+        "section": "TE24B",
+        "teacher": "Johan Bergström",
+        "color": "#1e8e3e",
+        "link": "https://classroom.google.com"
+      },
+      {
+        "id": "c3",
+        "name": "Svenska 2",
+        "section": "NA24A",
+        "teacher": "Maria Ek",
+        "color": "#d93025",
+        "link": "https://classroom.google.com"
+      },
+      {
+        "id": "c4",
+        "name": "Engelska 6",
+        "section": "NA24A",
+        "teacher": "David Miller",
+        "color": "#e37400",
+        "link": "https://classroom.google.com"
+      }
+    ],
+    "assignments": [
+      {
+        "id": "a1",
+        "courseId": "c1",
+        "title": "Inlämningsuppgift: Derivata och extremvärden",
+        "description": "Lös uppgift 1–6 i bifogat dokument och ladda upp tydliga uträkningar.",
+        "dueDate": "2026-11-20",
+        "completed": false,
+        "link": "https://classroom.google.com"
+      },
+      {
+        "id": "a2",
+        "courseId": "c2",
+        "title": "Webbprojekt: Study Hub med JSON-databas",
+        "description": "Bygg roller för elev, lärare och admin med dynamisk datalagring.",
+        "dueDate": "2026-11-20",
+        "completed": false,
+        "link": "https://classroom.google.com"
+      },
+      {
+        "id": "a3",
+        "courseId": "c3",
+        "title": "Krönika: Språket i sociala medier",
+        "description": "Skriv en argumenterande krönika på 600–800 ord i Google Docs.",
+        "dueDate": "2026-11-24",
+        "completed": false,
+        "link": "https://classroom.google.com"
+      }
+    ],
+    "grades": [
+      {
+        "id": "g1",
+        "studentId": "u1",
+        "studentName": "Alex Andersson",
+        "course": "Matematik 3c",
+        "points": 100,
+        "grade": "B",
+        "teacher": "Anna Lindqvist",
+        "comment": "Starkt resultat på derivata-provet."
+      },
+      {
+        "id": "g2",
+        "studentId": "u1",
+        "studentName": "Alex Andersson",
+        "course": "Programmering 1",
+        "points": 100,
+        "grade": "A",
+        "teacher": "Johan Bergström",
+        "comment": "Välstrukturerad kod i webbutvecklingsprojektet."
+      },
+      {
+        "id": "g3",
+        "studentId": "u1",
+        "studentName": "Alex Andersson",
+        "course": "Svenska 2",
+        "points": 100,
+        "grade": "C",
+        "teacher": "Maria Ek",
+        "comment": "Bra analys i litteraturseminariet."
+      },
+      {
+        "id": "g4",
+        "studentId": "u5",
+        "studentName": "Sara Svensson",
+        "course": "Matematik 3c",
+        "points": 100,
+        "grade": "A",
+        "teacher": "Anna Lindqvist",
+        "comment": "Mycket god problemlösningsförmåga."
+      },
+      {
+        "id": "g5",
+        "studentId": "u5",
+        "studentName": "Sara Svensson",
+        "course": "Programmering 1",
+        "points": 100,
+        "grade": "B",
+        "teacher": "Johan Bergström",
+        "comment": "Snygg gränssnittsdesign och fungerande API-koppling."
+      },
+      {
+        "id": "g6",
+        "studentId": "u5",
+        "studentName": "Sara Svensson",
+        "course": "Svenska 2",
+        "points": 100,
+        "grade": "A",
+        "teacher": "Maria Ek",
+        "comment": "Välformulerad och träffsäker krönika."
+      },
+      {
+        "id": "g7",
+        "studentId": "u6",
+        "studentName": "Liam Lindberg",
+        "course": "Matematik 3c",
+        "points": 100,
+        "grade": "C",
+        "teacher": "Anna Lindqvist",
+        "comment": "Godkänd på samtliga delmoment."
+      },
+      {
+        "id": "g8",
+        "studentId": "u6",
+        "studentName": "Liam Lindberg",
+        "course": "Programmering 1",
+        "points": 100,
+        "grade": "A",
+        "teacher": "Johan Bergström",
+        "comment": "Utmärkt struktur i JavaScript-logiken."
+      },
+      {
+        "id": "g9",
+        "studentId": "u6",
+        "studentName": "Liam Lindberg",
+        "course": "Engelska 6",
+        "points": 100,
+        "grade": "B",
+        "teacher": "David Miller",
+        "comment": "Stark muntlig presentation."
+      }
+    ],
+    "announcements": [
+      {
+        "id": "m1",
+        "title": "Temavecka",
+        "text": "Imorgon är det pyjamas- och mysig tröja-dag.",
+        "author": "Elevkåren"
+      },
+      {
+        "id": "m2",
+        "title": "Bibliotekets öppettider",
+        "text": "Mediecentret stänger kl. 16:00 idag på grund av ett läraremöte.",
+        "author": "Skolexpeditionen"
+      }
+    ],
+    "lunchMenu": {
+      "Måndag": "Örtstekt kyckling med potatismos / Kikärtscurry med ris",
+      "Tisdag": "Spaghetti med köttfärssås / Sojafärssås & parmesan",
+      "Onsdag": "Panerad torskfilé med remouladsås / Krispiga grönsaksbiffar",
+      "Torsdag": "Ärtsoppa & pannkakor / Vegetarisk linssoppa & pannkakor",
+      "Fredag": "Tacobuffé med tillbehör / Vegofärs-tacos"
+    }
+  }

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Study Hub – Lärarvy</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <div class="header-top">
+      <a href="index.html" class="brand">
+        <div class="brand-icon">SH</div>
+        <h1>Study Hub</h1>
+      </a>
+
+      <ul class="status-pills">
+        <li id="nextLessonStatus">Nästa lektion: Matematik 3c (10:15)</li>
+        <li class="due-badge" id="dueTodayStatus">Inlämning idag: 0 uppgifter</li>
+      </ul>
+
+      <div class="auth-bar" id="authHeaderStatus"></div>
+    </div>
+
+    <nav aria-label="Huvudnavigation">
+      <ul class="tab-list">
+        <li><a href="index.html" class="tab-btn">Översikt</a></li>
+        <li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
+        <li><a href="schema.html" class="tab-btn">Schema</a></li>
+        <li><a href="betyg.html" class="tab-btn">Betyg</a></li>
+        <li><a href="skolinfo.html" class="tab-btn">Skolinfo &amp; Matsedel</a></li>
+        <li><a href="larare.html" class="tab-btn active">Lärarvy</a></li>
+        <li><a href="admin.html" class="tab-btn">Admin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Inloggningskrav om användaren inte är inloggad som lärare/admin -->
+    <section id="teacherAuthGate" style="display:none;">
+      <div class="login-container">
+        <div class="card">
+          <div class="alert alert-info">
+            <strong>Lärarinloggning krävs:</strong> Logga in med ett lärar- eller adminkonto för att hantera uppgifter och betyg.
+          </div>
+          <div id="inlineTeacherError" class="alert alert-error" style="display:none;">
+            Ogiltig lärarinloggning. Testa <code>anna.larare</code> / <code>larare123</code>.
+          </div>
+          <form id="inlineTeacherLoginForm" class="form-stack">
+            <div class="form-group">
+              <label for="inlineTeacherUser">Användarnamn</label>
+              <input type="text" id="inlineTeacherUser" value="anna.larare" required>
+            </div>
+            <div class="form-group">
+              <label for="inlineTeacherPass">Lösenord</label>
+              <input type="password" id="inlineTeacherPass" value="larare123" required>
+            </div>
+            <button type="submit" class="btn btn-success">Logga in som lärare</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Lärarens arbetsyta -->
+    <section id="teacherDashboard" style="display:none;">
+      <div class="section-header">
+        <div>
+          <h2>Lärarvy – Kurser, Uppgifter &amp; Betyg</h2>
+          <p id="teacherWelcome" style="font-size:0.9rem; color:var(--text-muted);"></p>
+        </div>
+      </div>
+
+      <!-- Betygssättning per elev (placerad högst upp för snabb åtkomst) -->
+      <div class="card" style="margin-bottom:1.25rem;">
+        <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1rem;">
+          <div>
+            <h3 style="margin-bottom:0.2rem;">Individuell betygssättning</h3>
+            <p style="font-size:0.86rem; color:var(--text-muted);">
+              Välj en elev i listan för att uppdatera befintliga kursbetyg eller registrera ett nytt betyg.
+            </p>
+          </div>
+
+          <div class="toolbar-actions" style="background:var(--surface-alt); padding:0.6rem 0.9rem; border-radius:10px; border:1px solid var(--border);">
+            <label for="teacherStudentSelect" style="font-size:0.88rem; font-weight:700;">Välj elev:</label>
+            <select id="teacherStudentSelect" style="min-width:220px;"></select>
+            <span id="teacherStudentMeta" class="role-badge role-student"></span>
+          </div>
+        </div>
+
+        <div id="teacherGradeFeedback" class="alert alert-success" style="display:none;"></div>
+
+        <div class="table-wrapper" style="margin-bottom:1rem;">
+          <table>
+            <thead>
+              <tr>
+                <th>Kurs</th>
+                <th>Poäng</th>
+                <th>Betyg / Prognos</th>
+                <th>Kommentar</th>
+                <th>Satt av</th>
+                <th>Åtgärd</th>
+              </tr>
+            </thead>
+            <tbody id="teacherGradesBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Lägg till nytt kursbetyg för den valda eleven -->
+        <div style="background:var(--surface-alt); border:1px solid var(--border); border-radius:10px; padding:0.95rem;">
+          <strong style="font-size:0.88rem; display:block; margin-bottom:0.6rem;">Lägg till nytt kursbetyg för vald elev:</strong>
+          <form id="teacherAddGradeForm" class="add-task-grid" style="margin-top:0;">
+            <select id="teacherNewGradeCourse" required></select>
+            <select id="teacherNewGradeValue" required>
+              <option value="A">Betyg: A</option>
+              <option value="B">Betyg: B</option>
+              <option value="C" selected>Betyg: C</option>
+              <option value="D">Betyg: D</option>
+              <option value="E">Betyg: E</option>
+              <option value="F">Betyg: F</option>
+              <option value="-">Prognos saknas (-)</option>
+            </select>
+            <input type="text" id="teacherNewGradeComment" placeholder="Kommentar till eleven..." required>
+            <button type="submit" class="btn btn-primary">+ Lägg till betyg</button>
+          </form>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <!-- Skapa ny uppgift i JSON-databasen -->
+        <div class="card">
+          <h3>Publicera ny Classroom-uppgift</h3>
+          <form id="teacherTaskForm" class="form-stack">
+            <div class="form-group">
+              <label for="teacherTaskCourse">Kurs</label>
+              <select id="teacherTaskCourse" required></select>
+            </div>
+            <div class="form-group">
+              <label for="teacherTaskTitle">Titel på uppgift</label>
+              <input type="text" id="teacherTaskTitle" placeholder="t.ex. Inlämning: Integraler" required>
+            </div>
+            <div class="form-group">
+              <label for="teacherTaskDue">Sista inlämningsdag</label>
+              <input type="date" id="teacherTaskDue" required>
+            </div>
+            <div class="form-group">
+              <label for="teacherTaskDesc">Instruktioner</label>
+              <textarea id="teacherTaskDesc" rows="2" placeholder="Beskriv vad eleverna ska göra..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Publicera uppgift</button>
+          </form>
+        </div>
+
+        <!-- Publicera meddelande + aktiva uppgifter -->
+        <div class="card">
+          <h3>Publicera meddelande till översikten</h3>
+          <form id="teacherAnnouncementForm" class="form-stack" style="margin-bottom:1.25rem;">
+            <div class="form-group">
+              <label for="teacherMsgTitle">Rubrik</label>
+              <input type="text" id="teacherMsgTitle" placeholder="t.ex. Prov i Matematik 3c" required>
+            </div>
+            <div class="form-group">
+              <label for="teacherMsgBody">Meddelande</label>
+              <input type="text" id="teacherMsgBody" placeholder="Skriv meddelandet..." required>
+            </div>
+            <button type="submit" class="btn btn-outline">Publicera meddelande</button>
+          </form>
+
+          <h3>Publicerade uppgifter i databasen</h3>
+          <ul id="teacherAssignmentsList" class="clean-list"></ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
