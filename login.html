@@ -1,71 +1,71 @@
 <!DOCTYPE html>
 <html lang="sv">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Study Hub – Logga in</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Study Hub – Logga in</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
 
-  <header>
-    <div class="header-top">
-      <a href="index.html" class="brand">
-        <div class="brand-icon">SH</div>
-        <h1>Study Hub</h1>
-      </a>
-      <div class="auth-bar" id="authHeaderStatus"></div>
-    </div>
+		<header>
+			<div class="header-top">
+				<a href="index.html" class="brand">
+					<div class="brand-icon">SH</div>
+					<h1>Study Hub</h1>
+				</a>
+				<div class="auth-bar" id="authHeaderStatus"></div>
+ 			</div>
 
-    <nav aria-label="Huvudnavigation">
-      <ul class="tab-list">
-        <li><a href="index.html" class="tab-btn">Översikt</a></li>
-        <li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
-        <li><a href="schema.html" class="tab-btn">Schema</a></li>
-        <li><a href="betyg.html" class="tab-btn">Betyg</a></li>
-        <li><a href="skolinfo.html" class="tab-btn">Skolinfo &amp; Matsedel</a></li>
-        <li><a href="larare.html" class="tab-btn">Lärarvy</a></li>
-        <li><a href="admin.html" class="tab-btn">Admin</a></li>
-      </ul>
-    </nav>
-  </header>
+			<nav aria-label="Huvudnavigation">
+				<ul class="tab-list">
+					<li><a href="index.html" class="tab-btn">Översikt</a></li>
+					<li><a href="classroom.html" class="tab-btn">Google Classroom <span class="tab-count" id="classroomBadge">0</span></a></li>
+					<li><a href="schema.html" class="tab-btn">Schema</a></li>
+					<li><a href="betyg.html" class="tab-btn">Betyg</a></li>
+					<li><a href="skolinfo.html" class="tab-btn">Skolinfo &amp; Matsedel</a></li>
+					<li><a href="larare.html" class="tab-btn">Lärarvy</a></li>
+					<li><a href="admin.html" class="tab-btn">Admin</a></li>
+				</ul>
+			</nav>
+		</header>
 
-  <main>
-    <div class="login-container">
-      <div class="card">
-        <h2 style="margin-bottom:0.35rem;">Logga in i Study Hub</h2>
-        <p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
-          Välj ett testkonto nedan eller skriv in användarnamn och lösenord.
-        </p>
+		<main>
+			<div class="login-container">
+				<div class="card">
+					<h2 style="margin-bottom:0.35rem;">Logga in i Study Hub</h2>
+					<p style="font-size:0.88rem; color:var(--text-muted); margin-bottom:1rem;">
+						Välj ett testkonto nedan eller skriv in användarnamn och lösenord.
+					</p>
 
-        <div id="loginError" class="alert alert-error" style="display:none;"></div>
+					<div id="loginError" class="alert alert-error" style="display:none;"></div>
 
-        <form id="loginForm" class="form-stack">
-          <div class="form-group">
-            <label for="loginUsername">Användarnamn</label>
-            <input type="text" id="loginUsername" required placeholder="t.ex. anna.larare">
-          </div>
-          <div class="form-group">
-            <label for="loginPassword">Lösenord</label>
-            <input type="password" id="loginPassword" required placeholder="••••••••">
-          </div>
-          <button type="submit" class="btn btn-primary" style="width:100%;">Logga in</button>
-        </form>
+					<form id="loginForm" class="form-stack">
+						<div class="form-group">
+							<label for="loginUsername">Användarnamn</label>
+							<input type="text" id="loginUsername" required placeholder="t.ex. anna.larare">
+						</div>
+						<div class="form-group">
+							<label for="loginPassword">Lösenord</label>
+							<input type="password" id="loginPassword" required placeholder="••••••••">
+						</div>
+						<button type="submit" class="btn btn-primary" style="width:100%;">Logga in</button>
+					</form>
 
-        <hr style="margin:1.25rem 0; border:none; border-top:1px solid var(--border);">
+					<hr style="margin:1.25rem 0; border:none; border-top:1px solid var(--border);">
 
-        <div>
-          <strong style="font-size:0.85rem;">Snabbfyll testinloggning:</strong>
-          <div class="quick-login-grid">
-            <button type="button" class="btn btn-outline btn-sm" data-quick-user="alex.elev" data-quick-pass="elev123">Elev</button>
-            <button type="button" class="btn btn-outline btn-sm" data-quick-user="anna.larare" data-quick-pass="larare123">Lärare</button>
-            <button type="button" class="btn btn-outline btn-sm" data-quick-user="admin" data-quick-pass="admin123">Admin</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </main>
+					<div>
+						<strong style="font-size:0.85rem;">Snabbfyll testinloggning:</strong>
+						<div class="quick-login-grid">
+							<button type="button" class="btn btn-outline btn-sm" data-quick-user="alex.elev" data-quick-pass="elev123">Elev</button>
+							<button type="button" class="btn btn-outline btn-sm" data-quick-user="anna.larare" data-quick-pass="larare123">Lärare</button>
+							<button type="button" class="btn btn-outline btn-sm" data-quick-user="admin" data-quick-pass="admin123">Admin</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
 
-  <script src="app.js"></script>
-</body>
+		<script src="app.js"></script>
+	</body>
 </html>
